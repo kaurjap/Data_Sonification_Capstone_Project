@@ -1,73 +1,64 @@
+*{
+  margin:0 0 6px;
+}
+header{
+  text-align:left;
+  color: black;
+  background-color: #cebae4;
+  padding:30px 150px;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #b98ee6;	/*	Use the Color Picker to find the hex code of your favorite color
+									http://www.w3schools.com/tags/ref_colorpicker.asp */
+}
+body p {
+  padding-left: 2em;
 }
 
-a {
-  color: #ff00d9;
+
+h3{
+  color: black;
+  line-height: 30px;
+  text-align: center;
 }
 
-/**
-    BOOTSTRAP template for a website based design.
- */
-
-/* Remove the navbar's default margin-bottom and rounded borders */
-.navbar {
-  margin-bottom: 0;
-  border-radius: 0;
-}
-
-/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {height: 450px}
-
-/* Set gray background color and 100% height */
-.sidenav {
-  padding-top: 20px;
-  background-color: #f1f1f1;
-  height: 100%;
-}
-
-/* Set black background color, white text and some padding */
-footer {
-  background-color: #555;
-  color: white;
+#mainArea{			/* Define the formatting for the <div id="asssignments"> box */
+  width: 720px;
+  margin: 0 auto;
+  box-shadow: 0 2px 15px #EEE;
+  min-height: 350px;
   padding: 15px;
+  border-radius: 10px;
+  background-color: #eadfb2;
+  align-content: center;
 }
 
-/* On small screens, set height to 'auto' for sidenav and grid */
-@media screen and (max-width: 767px) {
-  .sidenav {
-    height: auto;
-    padding: 15px;
-  }
-  .row.content {height:auto;}
+button {
+  font-size: 24px;
 }
-
-/**
-    SEARCH DROPDOWN BAR
- */
 
 #searchKeywords {
+  transition: width 0.4s ease-in-out;
+  height: 30px;
+  padding: 12px 30px;
   box-sizing: border-box;
-  background-position: 14px 12px;
-  background-repeat: no-repeat;
-  font-size: 16px;
-  padding: 14px 20px 12px 45px;
-  border: none;
-  border-bottom: 1px solid #ddd;
+  border: 4px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 20px;
 }
 
-#searchKeywords:focus {outline: 3px solid #ddd;}
-
-.dropdown {
-  position: relative;
-  display: block;
-  margin-top: 50px;
+#searchKeywords:focus {
+  background-color: antiquewhite;
 }
-
-#searchKeywords a:hover {background-color: #000;}
 
 #searchButton {
-  margin-left: 20px;
-  font-min-size: larger;
+  margin-left: 50px;
+}
+
+hr{						/* Define the formatting for the <hr /> line between "Course Work" and lab links */
+  margin: 10px 0;
+  width: 100%;
+  float: left;
 }
