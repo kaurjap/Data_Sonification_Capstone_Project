@@ -1,0 +1,8 @@
+extends layout
+
+block content
+    form(method='post')
+        h3 Search a Stock Symbol
+        .form-row
+            input#searchKeywords(type='text' name='searchKeywords' placeholder="Search..." autocomplete='false')
+            button.block(type='submit' id="searchButton") Search
