@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 
 router.post ('/',  async (req, res) => {
   // DEBUG point
-  console.log(req.body.searchKeywords);
+  // console.log(req.body.searchKeywords);
 
   let keywords = req.body.searchKeywords;
 

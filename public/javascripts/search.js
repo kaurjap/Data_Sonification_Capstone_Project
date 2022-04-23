@@ -9,7 +9,7 @@ $(document).ready ( () => {
         const formData = new FormData (this);
 
         // DEBUG
-        console.log ("Form input: " + formData.get ("searchKeywords"));
+        // console.log ("Form input: " + formData.get ("searchKeywords"));
 
         const searchParams = new URLSearchParams ();
 
@@ -21,7 +21,7 @@ $(document).ready ( () => {
         }).then ( response => response.json ()).then ( (searchResults) => {
 
             // DEBUG
-            console.log (searchResults['bestMatches']);
+            // console.log (searchResults['bestMatches']);
 
             // the following is an array of all the resulting stocks
             let bestMatches = searchResults['bestMatches'];
@@ -49,21 +49,6 @@ $(document).ready ( () => {
                 tableHeadingsRow.appendChild(tableHeading2);
                 tableHeadingsRow.appendChild(tableHeading3);
                 table.appendChild (tableHeadingsRow);
-
-                /*
-                bestMatches.forEach ( function (index, value) {
-                        let tableRow = document.createElement("tr");
-                        let symbol = value ['1. symbol'];
-                        let name = value ['2. name'];
-                        let region = value ['4. region'];
-                        let cell1 = tableRow.insertCell (0) ;
-                        cell1.innerText = symbol;
-                        let cell2 = tableRow.insertCell (1) ;
-                        cell1.innerText = name;
-                        let cell3 = tableRow.insertCell (2) ;
-                        cell1.innerText = region;
-                        table.appendChild(tableRow);
-                    });*/
 
 
                 for (const stock of bestMatches) {
@@ -95,6 +80,5 @@ $(document).ready ( () => {
         });
 
     });
-
 
 });

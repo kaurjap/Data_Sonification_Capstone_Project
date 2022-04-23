@@ -9,8 +9,7 @@ header{
 }
 
 body {
-  background-color: rgba(83, 255, 80, 0.19);	/*	Use the Color Picker to find the hex code of your favorite color
-									http://www.w3schools.com/tags/ref_colorpicker.asp */
+  background-color: rgba(83, 255, 80, 0.19);
 }
 body p {
   padding-left: 2em;
@@ -23,7 +22,7 @@ h3{
   text-align: center;
 }
 
-#mainArea{			/* Define the formatting for the <div id="asssignments"> box */
+#mainArea{
   width: 720px;
   margin: 0 auto;
   box-shadow: 0 2px 15px #EEE;
@@ -74,7 +73,7 @@ button {
 }
 
 
-hr {						/* Define the formatting for the <hr /> line between "Course Work" and lab links */
+hr {
   margin: 10px 0;
   width: 100%;
   float: left;
