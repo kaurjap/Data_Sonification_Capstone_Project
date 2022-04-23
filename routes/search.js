@@ -15,9 +15,6 @@ router.post ('/',  async (req, res) => {
 
   let keywords = req.body.searchKeywords;
 
-  // DEBUG
-  console.log ("Type of keywords: ");
-
   const data = await searchStockSymbol(keywords);
   // DEBUG
   console.log("Data in the browser -------- ");

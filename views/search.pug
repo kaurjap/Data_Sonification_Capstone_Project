@@ -1,8 +1,10 @@
 extends layout
 
+block links
+    script(src="/javascripts/search.js")
 block content
-    form(method='post')
-        h3 Search a Stock Symbol
+    h3 Search a Stock Symbol
+    form(id="searchForm")
         .form-row
             input#searchKeywords(type='text' name='searchKeywords' placeholder="Search..." autocomplete='false')
             button.block(type='submit' id="searchButton") Search
