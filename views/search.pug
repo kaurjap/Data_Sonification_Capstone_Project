@@ -6,7 +6,19 @@ block content
     h3 Search a Stock Symbol
     form(id="searchForm")
         .form-row
-            input#searchKeywords(type='text' name='searchKeywords' placeholder="Search..." autocomplete='false')
+            input#searchKeywords(type='text' list="searchResults" name='searchKeywords' placeholder="Search..." autocomplete='false')
             button.block(type='submit' id="searchButton") Search
-    .best-matches
+    br
+    br
+    div#messageArea
+        h2#message
+    table#searchResults
+        tr#headings
+            th Symbol
+            th Name
+            th Region
+
+
+
+
 

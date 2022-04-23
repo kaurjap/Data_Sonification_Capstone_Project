@@ -1,4 +1,4 @@
-$(document).ready ( function () {
+$(document).ready ( () => {
 
     $("#searchForm").on ("submit", function (e) {
         console.log ("Button clicked!");
@@ -18,9 +18,80 @@ $(document).ready ( function () {
         fetch ("/search", {
             method: 'post',
             body: searchParams
-        }).then ( (response) => {
-            console.log (typeof response);
-            console.log (response.text ());
+        }).then ( response => response.json ()).then ( (searchResults) => {
+
+            // DEBUG
+            console.log (searchResults['bestMatches']);
+
+            // the following is an array of all the resulting stocks
+            let bestMatches = searchResults['bestMatches'];
+            console.log (typeof bestMatches);
+            console.log (bestMatches.length);
+
+            let message = document.getElementById("message");
+
+            // insert the resulting data into a table
+            let table = document.getElementById("searchResults");
+
+            if (bestMatches.length > 0) {
+
+                message.innerText = "Best Matches: ";
+
+                table.innerHTML = "";
+                let tableHeadingsRow = document.createElement("tr");
+                let tableHeading1 = document.createElement("th");
+                let tableHeading2 = document.createElement("th");
+                let tableHeading3 = document.createElement("th");
+                tableHeading1.innerText = "Symbol";
+                tableHeading2.innerText = "Name";
+                tableHeading3.innerText = "Region";
+                tableHeadingsRow.appendChild(tableHeading1);
+                tableHeadingsRow.appendChild(tableHeading2);
+                tableHeadingsRow.appendChild(tableHeading3);
+                table.appendChild (tableHeadingsRow);
+
+                /*
+                bestMatches.forEach ( function (index, value) {
+                        let tableRow = document.createElement("tr");
+                        let symbol = value ['1. symbol'];
+                        let name = value ['2. name'];
+                        let region = value ['4. region'];
+                        let cell1 = tableRow.insertCell (0) ;
+                        cell1.innerText = symbol;
+                        let cell2 = tableRow.insertCell (1) ;
+                        cell1.innerText = name;
+                        let cell3 = tableRow.insertCell (2) ;
+                        cell1.innerText = region;
+                        table.appendChild(tableRow);
+                    });*/
+
+
+                for (const stock of bestMatches) {
+
+                    let tableRow = document.createElement("tr");
+                    let symbol = stock ['1. symbol'];
+                    let name = stock ['2. name'];
+                    let region = stock ['4. region'];
+
+                    // DEBUG
+                    // console.log (symbol);
+                    // console.log (name);
+                    // console.log (region);
+
+                    let cell1 = tableRow.insertCell () ;
+                    cell1.innerHTML = symbol;
+                    let cell2 = tableRow.insertCell () ;
+                    cell2.innerHTML = name;
+                    let cell3 = tableRow.insertCell () ;
+                    cell3.innerHTML = region;
+                    table.appendChild (tableRow);
+                }
+
+            } else {
+                message.innerText = "Sorry, no matches found.";
+                table.innerHTML = "";
+            }
+
         });
 
     });
