@@ -1,8 +1,9 @@
 $(document).ready ( () => {
 
     $("#searchForm").on ("submit", function (e) {
-        console.log ("Button clicked!");
-        console.log ("We are seeing if the server side default form call still works even if this client-side function is there.")
+        // DEBUG
+        // console.log ("Button clicked!");
+        // console.log ("We are seeing if the server side default form call still works even if this client-side function is there.")
 
         e.preventDefault();
 

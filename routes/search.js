@@ -1,5 +1,4 @@
 const express = require('express');
-const {etag} = require("express/lib/utils");
 const router = express.Router();
 const fetch = require('node-fetch');
 
@@ -17,8 +16,8 @@ router.post ('/',  async (req, res) => {
 
   const data = await searchStockSymbol(keywords);
   // DEBUG
-  console.log("Data in the browser -------- ");
-  console.log(data);
+  // console.log("Data for the browser -------- ");
+  // console.log(data);
 
   res.send(data);
 });
