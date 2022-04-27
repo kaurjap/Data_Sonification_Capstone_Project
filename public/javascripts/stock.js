@@ -1,42 +1,25 @@
 $(document).ready ( function () {
 
-    console.log ("inside javascript file");
-
     $("#stockOptions").on ("submit", function (e) {
 
         e.preventDefault ();
 
-        const formData = new FormData (this);
+        const symbol = document.getElementById("stockSymbol").innerText;
+        // const formData = new FormData (this);
 
-        sendData (formData);
+        const timeSeries = document.getElementById("timeSeries").value;
+        const priceType = document.getElementById("priceType").value;
 
         // DEBUG
-        console.log ("after sending form data");
+        console.log ("Price Type value in browser", priceType);
+        console.log ("Time Series value in browser", timeSeries);
+
+        fetch ("/stock/" + symbol + "/" + timeSeries + "/" + priceType , {
+            method: 'get'
+        }).then ( (response) => {
+            console.log ("server response: " + response);
+        });
+
     });
 
 });
-
-
-let sendData = function (formData) {
-
-    const XHR = new XMLHttpRequest ();
-
-    let encodedUrl = "";
-    let data = [];
-
-    data.push (encodeURI (formData.timeSeries));
-    data.push (encodeURI (formData.priceType));
-
-    // DEBUG
-    for (let item in data) {
-        console.log (item);
-    }
-
-    encodedUrl = data.join ('/');
-
-    // DEBUG
-    console.log ("Encoded URL: " + encodedUrl);
-
-    XHR.open ("GET", ("/"+encodedUrl));
-    XHR.send ();
-}

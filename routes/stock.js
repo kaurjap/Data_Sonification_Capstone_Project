@@ -37,14 +37,11 @@ let dataToPlay = {
 
 router.get ("/:symbol", async (req, res) => {
 
-    // for testing, using symbol=MSFT
-
     const stockSymbol = req.params.symbol;
-
     stockConfiguration.symbol = stockSymbol;
-    res.render ('stock');
 
-
+    // form to take input on options to play
+    res.render ('stock', {symbol: stockSymbol});
 
     /*
 
@@ -65,6 +62,24 @@ router.get ("/:symbol", async (req, res) => {
     res.send (json);
 
      */
+});
+
+
+router.get ("/:symbol/:timeSeries/:priceType", (req, res) => {
+
+    // DEBUG
+    console.log ("URL = " + req.url);
+    console.log ("inside the correct route");
+
+    stockConfiguration.timeSeries = req.params.timeSeries;
+    stockConfiguration.priceType = req.params.priceType;
+
+    // DEBUG
+    console.log ("Time Series: " + req.params.timeSeries);
+    console.log ("Price Type: " + req.params.priceType);
+
+    // get the slider page when adding slider functionality
+    res.render ("stockResult", {message: "data receieved"});
 });
 
 

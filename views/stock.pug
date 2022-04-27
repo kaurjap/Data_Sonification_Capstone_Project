@@ -4,7 +4,9 @@ block links
     script(src="/javascripts/stock.js")
 
 block content
-    form(id="stockOptions")
+    h4#stockSymbol #{symbol}
+
+    form(id="stockOptions" action="/" method="get")
         label(for='timeSeries') Select the type of interval of Time Series:
         select#timeSeries(name='timeSeries')
             option(value='TIME_SERIES_DAILY') Daily Stock Prices

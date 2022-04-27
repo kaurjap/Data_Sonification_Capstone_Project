@@ -8,6 +8,7 @@ const indexRouter = require('./routes/index');
 const searchRouter = require('./routes/search');
 const stockRouter = require('./routes/stock');
 
+
 // instance of express
 const app = express();
 
