@@ -2,6 +2,14 @@ extends layout
 
 block links
     script(src="/javascripts/stock.js")
+    // ANYCHART LIBRARY  to plot the stock prices
+    script(src='https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js' type='text/javascript')
+    script(src='https://cdn.anychart.com/releases/8.11.0/js/anychart-stock.min.js' type='text/javascript')
+    script(src='https://cdn.anychart.com/releases/8.11.0/js/anychart-data-adapter.min.js')
+    script(src='https://cdn.anychart.com/releases/8.11.0/js/anychart-ui.min.js')
+    script(src='https://cdn.anychart.com/releases/8.11.0/js/anychart-exports.min.js')
+    link(href='https://cdn.anychart.com/releases/8.11.0/css/anychart-ui.min.css' type='text/css' rel='stylesheet')
+    link(href='https://cdn.anychart.com/releases/8.11.0/fonts/css/anychart-font.min.css' type='text/css' rel='stylesheet')
 
 block content
     h4#stockSymbol #{symbol}
@@ -23,3 +31,7 @@ block content
         br
         br
         button(type="submit") Go!
+
+    br
+    br
+    div#chartContainer

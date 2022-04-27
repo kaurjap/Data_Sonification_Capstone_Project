@@ -19,7 +19,7 @@ router.post ('/',  async (req, res) => {
   // console.log("Data for the browser -------- ");
   // console.log(data);
 
-  res.send(data);
+  res.send (data);
 });
 
 
@@ -32,7 +32,7 @@ const searchStockSymbol = async (keywords) => {
   // api_url
   let api_url = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + keywords + "&apikey=RZXPA6POVXIQTX63";
 
-  let response = await fetch(api_url);
+  let response = await fetch (api_url);
   let data = await response.json();
 
   // DEBUG

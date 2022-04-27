@@ -99,3 +99,9 @@ tr, td {
 th {
   background-color: rgba(83, 255, 80, 0.19);
 }
+
+#chartContainer {
+  width: 100%;
+  height: 800px;
+}
+

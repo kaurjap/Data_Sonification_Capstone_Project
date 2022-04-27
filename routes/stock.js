@@ -9,16 +9,15 @@ const router = express.Router ();
 const fetch = require ('node-fetch');
 
 // other options for stock price selection
-let timeSeriesOptions = [
-    "TIME_SERIES_INTRADAY",
-    "TIME_SERIES_DAILY",
-    "TIME_SERIES_WEEKLY",
-    "TIME_SERIES_MONTHLY"
-];
+let timeSeriesKeys = {
+  "TIME_SERIES_DAILY": "Time Series (Daily)",
+  "TIME_SERIES_WEEKLY": "Weekly Time Series",
+  "TIME_SERIES_MONTHLY": "Monthly Time Series"
+};
 
 
 // JSON object that stores the stock data configurations
-let stockConfiguration = {
+let requestConfig = {
     symbol: "",
     priceType: "",
     timeSeries: "",
@@ -38,48 +37,59 @@ let dataToPlay = {
 router.get ("/:symbol", async (req, res) => {
 
     const stockSymbol = req.params.symbol;
-    stockConfiguration.symbol = stockSymbol;
+    requestConfig.symbol = stockSymbol;
 
     // form to take input on options to play
     res.render ('stock', {symbol: stockSymbol});
 
-    /*
-
-    The following code to fetch the data from API should be put in a different function.
-
-    console.log (dataInterval[1]);
-    // DEBUG
-    console.log ("Symbol = " + stockSymbol);
-
-    const api_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + stockSymbol + "&outputsize=full&datatype=json&apikey=RZXPA6POVXIQTX63";
-
-    // use the fetch API to retrieve the data from the stocks API
-    const response = await fetch (api_url);
-    const json = await response.json ();
-
-    console.log ("---------- API response --------- ");
-    console.log (json);
-    res.send (json);
-
-     */
 });
 
 
-router.get ("/:symbol/:timeSeries/:priceType", (req, res) => {
+router.get ("/:symbol/:timeSeries/:priceType", async (req, res) => {
 
     // DEBUG
     console.log ("URL = " + req.url);
     console.log ("inside the correct route");
 
-    stockConfiguration.timeSeries = req.params.timeSeries;
-    stockConfiguration.priceType = req.params.priceType;
+    requestConfig.timeSeries = req.params.timeSeries;
+    requestConfig.priceType = req.params.priceType;
 
     // DEBUG
     console.log ("Time Series: " + req.params.timeSeries);
     console.log ("Price Type: " + req.params.priceType);
 
     // get the slider page when adding slider functionality
-    res.render ("stockResult", {message: "data receieved"});
+
+    const api_url = "https://www.alphavantage.co/query?function=" + requestConfig.timeSeries + "&symbol=" + requestConfig.symbol + "&outputsize=full&datatype=json&apikey=RZXPA6POVXIQTX63";
+
+    // use the fetch API to retrieve the data from the stocks API
+    const response = await fetch (api_url);
+    const json = await response.json ();
+    const data = JSON.parse (JSON.stringify (json));
+
+    console.log ("---------- API response --------- ");
+
+    // filter out the response data into what is needed based on stock configurations
+    let dates = data [timeSeriesKeys[requestConfig.timeSeries]];
+    // console.log (dates);
+
+    let dataPairs = [];
+
+    for (let date in dates) {
+
+        dataToPlay.dates.push (date);
+        const stockPrice = dates [date] [requestConfig.priceType];
+        dataToPlay.prices.push (stockPrice);
+
+        let pair = [ date, parseFloat (stockPrice) ];
+        dataPairs.push (pair);
+    }
+
+    // console.log (dataToPlay);
+    console.log (dataPairs);
+
+    // res.send (JSON.stringify (dataToPlay));
+    res.send (dataPairs);
 });
 
 
