@@ -4,11 +4,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-
-
 const indexRouter = require('./routes/index');
 const searchRouter = require('./routes/search');
-
+const stockRouter = require('./routes/stock');
 
 // instance of express
 const app = express();
@@ -30,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // specifying middleware stack for various different routes
 app.use('/', indexRouter);
 app.use('/search', searchRouter);
-
+app.use ('/stock', stockRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

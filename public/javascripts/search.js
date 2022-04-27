@@ -55,6 +55,7 @@ $(document).ready ( () => {
                 for (const stock of bestMatches) {
 
                     let tableRow = document.createElement("tr");
+                    tableRow.classList.add ("clickable-row");
                     let symbol = stock ['1. symbol'];
                     let name = stock ['2. name'];
                     let region = stock ['4. region'];
@@ -65,11 +66,17 @@ $(document).ready ( () => {
                     // console.log (region);
 
                     let cell1 = tableRow.insertCell () ;
+                    cell1.classList.add ("symbol");
                     cell1.innerHTML = symbol;
+
                     let cell2 = tableRow.insertCell () ;
+                    cell2.classList.add ("name");
                     cell2.innerHTML = name;
+
                     let cell3 = tableRow.insertCell () ;
                     cell3.innerHTML = region;
+                    cell3.classList.add ("region");
+
                     table.appendChild (tableRow);
                 }
 
@@ -79,7 +86,15 @@ $(document).ready ( () => {
             }
 
         });
+    });
 
+
+    /**
+     * Method that sends the user to the stock symbol's page upon
+     * clicking that stock result
+     */
+    $(".clickable_row").on ('click', function (e) {
+        alert ("Row clicked!");
     });
 
 });

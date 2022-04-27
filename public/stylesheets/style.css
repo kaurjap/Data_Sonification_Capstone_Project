@@ -92,8 +92,8 @@ tr, td {
   border-bottom: 1px solid;
 }
 
-tr:hover {
-  background-color: rgb(206, 186, 228);
+.clickable-row:hover {
+  background-color: rgba(83, 255, 80, 0.19);
 }
 
 th {
