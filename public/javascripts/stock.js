@@ -7,6 +7,13 @@ $(document).ready ( function () {
     let prices = [];
     let counter = 0;
 
+    /*
+        Tone JS Audio Setup
+    */
+    let synth = new Tone.Synth().toDestination();
+
+
+
     /**
      * Plot a chart and create a play button when the stock options are
      * selected and submitted.
@@ -101,21 +108,26 @@ $(document).ready ( function () {
                 console.log ("Minimum Price: " + pricesRange.min);
                 console.log ("Maximum Price: " + pricesRange.max);
 
-                stockPrices.forEach ( (price) => {
-                    mappedPrices.push ( scale (price, pricesRange, soundRange) );
+                let reversedPrices = stockPrices.reverse ();
+
+                reversedPrices.forEach ( (price) => {
+                    mappedPrices.push ( Math.round (scale (price, pricesRange, soundRange)) );
                 })
 
                 // DEBUG
-                console.log("Mapped Prices: ");
-                console.log(mappedPrices);
+                console.log ("Mapped Prices: ");
+                console.log (mappedPrices);
 
-                // set up audio synthesizer
 
-                // let synth = new Tone.Synth().toDestination();
-                //
-                // mappedPrices.forEach((price) => {
-                //     synth.triggerAttackRelease(price, "32n");
-                // })
+                // using Tone's audio synthesizer to produce the sound
+                let i = 0;
+                mappedPrices.forEach ( (frequency) => {
+                    const now = Tone.now ();
+                    synth.triggerAttackRelease (frequency, "2n", now);
+                    console.log ("i = " + i);
+                    i++;
+                    sleep (250);
+                })
 
             });
 
@@ -124,6 +136,19 @@ $(document).ready ( function () {
 
 }); // end document.ready ()
 
+
+/**
+ * Using the Date module to create a sleep method
+ *
+ * @param milliseconds  the number of milliseconds to pause for
+ */
+let sleep = (milliseconds) => {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
 
 /**
  * Method that gets called to create a play button
