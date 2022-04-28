@@ -25,11 +25,8 @@ let requestConfig = {
     endDate: "",
 };
 
-
-// object to store the data to play
-// This data should be sent as a response
-let dataToPlay = {
-    dates: [],
+let returnData = {
+    dataPairs: [],
     prices: []
 };
 
@@ -48,17 +45,16 @@ router.get ("/:symbol", async (req, res) => {
 router.get ("/:symbol/:timeSeries/:priceType", async (req, res) => {
 
     // DEBUG
-    console.log ("URL = " + req.url);
-    console.log ("inside the correct route");
+    // console.log ("URL = " + req.url);
+    // console.log ("inside the correct route");
 
     requestConfig.timeSeries = req.params.timeSeries;
     requestConfig.priceType = req.params.priceType;
 
     // DEBUG
-    console.log ("Time Series: " + req.params.timeSeries);
-    console.log ("Price Type: " + req.params.priceType);
+    // console.log ("Time Series: " + req.params.timeSeries);
+    // console.log ("Price Type: " + req.params.priceType);
 
-    // get the slider page when adding slider functionality
 
     const api_url = "https://www.alphavantage.co/query?function=" + requestConfig.timeSeries + "&symbol=" + requestConfig.symbol + "&outputsize=full&datatype=json&apikey=RZXPA6POVXIQTX63";
 
@@ -73,23 +69,23 @@ router.get ("/:symbol/:timeSeries/:priceType", async (req, res) => {
     let dates = data [timeSeriesKeys[requestConfig.timeSeries]];
     // console.log (dates);
 
-    let dataPairs = [];
+    // let dataPairs = [];
 
     for (let date in dates) {
 
-        dataToPlay.dates.push (date);
         const stockPrice = dates [date] [requestConfig.priceType];
-        dataToPlay.prices.push (stockPrice);
+        returnData.prices.push (stockPrice);
 
         let pair = [ date, parseFloat (stockPrice) ];
-        dataPairs.push (pair);
+        // dataPairs.push (pair);
+        returnData.dataPairs.push (pair);
     }
 
     // console.log (dataToPlay);
     // console.log (dataPairs);
 
     // res.send (JSON.stringify (dataToPlay));
-    res.send (dataPairs);
+    res.send (returnData);
 });
 
 

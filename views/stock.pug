@@ -8,6 +8,7 @@ block links
     script(src='https://cdn.anychart.com/releases/8.11.0/js/anychart-data-adapter.min.js')
     script(src='https://cdn.anychart.com/releases/8.11.0/js/anychart-ui.min.js')
     script(src='https://cdn.anychart.com/releases/8.11.0/js/anychart-exports.min.js')
+    script(src="https://unpkg.com/tone")
     link(href='https://cdn.anychart.com/releases/8.11.0/css/anychart-ui.min.css' type='text/css' rel='stylesheet')
     link(href='https://cdn.anychart.com/releases/8.11.0/fonts/css/anychart-font.min.css' type='text/css' rel='stylesheet')
 
@@ -27,7 +28,7 @@ block content
             option(value='2. high') High Price
             option(value='3. low') Low Price
             option(value='4. close') Close Price
-        button(type="submit") Go!
+        button(type="submit" id="graphButton") Go!
 block moreContent
     br
     div#chartContainer
