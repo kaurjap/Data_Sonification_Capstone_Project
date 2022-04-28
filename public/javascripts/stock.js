@@ -30,14 +30,25 @@ $(document).ready ( function () {
                 chart.scroller ().line (dataTable);
 
                 // to color mark the rising and falling strokes
-                lineSeries.risingStroke ('#2FA85A', 3, null, 'round', 'round');
-                lineSeries.fallingStroke ('#EE4237', 3, null, 'round', 'round');
+                lineSeries.risingStroke ('rgba(19,186,66,0.66)', 3, null, 'round', 'round');
+                lineSeries.fallingStroke ('rgba(186,19,30,0.66)', 3, null, 'round', 'round');
 
                 chart.title("Symbol = " + symbol);
                 chart.container("chartContainer");
                 chart.draw();
-            });
+            }).then ( () => {
+                createButton ();
+        });
 
     });
 
 });
+
+let createButton = function () {
+    let buttonArea = document.getElementById ("mainArea");
+
+    let playButton = document.createElement("button");
+    playButton.innerText = "Play!";
+    playButton.setAttribute('id', 'playButton');
+    buttonArea.appendChild (playButton);
+}

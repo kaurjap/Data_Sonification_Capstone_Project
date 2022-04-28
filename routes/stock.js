@@ -86,7 +86,7 @@ router.get ("/:symbol/:timeSeries/:priceType", async (req, res) => {
     }
 
     // console.log (dataToPlay);
-    console.log (dataPairs);
+    // console.log (dataPairs);
 
     // res.send (JSON.stringify (dataToPlay));
     res.send (dataPairs);

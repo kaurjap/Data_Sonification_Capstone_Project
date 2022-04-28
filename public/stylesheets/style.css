@@ -1,35 +1,50 @@
-*{
+* {
   margin:0 0 6px;
 }
+
 header{
-  text-align:left;
+  text-align:center;
+  font-family: "American Typewriter";
   color: black;
-  background-color: #e9c2c2;
-  padding:30px 150px;
+  background-color: rgba(248, 219, 102, 0.82);
+  padding:40px 150px;
+  height: 100px;
+}
+
+header h1 {
+  font-size: 50px;
+}
+
+header p {
+  font-size: 20px;
 }
 
 body {
-  background-color: rgba(83, 255, 80, 0.19);
+  background-image: url("/images/background.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 body p {
   padding-left: 2em;
 }
 
 
-h3{
+h3 {
   color: black;
   line-height: 30px;
   text-align: center;
 }
 
 #mainArea{
-  width: 720px;
+  width: 1200px;
+  box-sizing: border-box;
   margin: 0 auto;
-  box-shadow: 0 2px 15px #EEE;
-  min-height: 350px;
+  box-shadow: 0 2px 15px #d3bae4;
+  min-height: 100px;
   padding: 15px;
   border-radius: 10px;
-  background-color: #e9c2c2;
+  background-color: rgba(255, 255, 255, 0.88);
   align-content: center;
 }
 
@@ -37,41 +52,48 @@ button {
   font-size: 24px;
 }
 
+/* Styling for the search form */
 #searchKeywords {
+  margin: auto;
   transition: width 0.4s ease-in-out;
-  height: 50px;
+  height: 20px;
   padding: 12px 30px;
-  box-sizing: border-box;
   border: 4px solid #ccc;
   border-radius: 4px;
   font-size: 20px;
-  margin-right: 50px;
 }
 
 #searchKeywords:focus {
-  background-color: rgba(83, 255, 80, 0.19);
+  background-color: rgba(255, 255, 255, 0.93);
 }
 
-#searchButton {
+button {
   display:inline-block;
-  padding:0.35em 1.2em;
   border:0.1em solid #FFFFFF;
-  margin:0 0.3em 0.3em 0;
   border-radius:0.12em;
   box-sizing: border-box;
-  text-decoration:none;
   font-family:'Roboto',sans-serif;
-  font-weight:300;
+  font-weight: bold;
   color: #ffffff;
   text-align:center;
   transition: all 0.2s;
+  background-color: rgba(186, 19, 78, 0.66);
+  padding: 10px 15px;
+  color: white;
+  font-size: 20px;
+  border: 2px solid grey;
+  cursor: pointer;
+  margin-left: 15px;
 }
 
-#searchButton:hover{
+button:hover{
   color:#000000;
   background-color:#FFFFFF;
 }
 
+h3 {
+  font-size: 25px;
+}
 
 hr {
   margin: 10px 0;
@@ -83,7 +105,6 @@ hr {
   border: 1px solid;
   width: 100%;
   text-align: center;
-
 }
 
 tr, td {
@@ -93,15 +114,47 @@ tr, td {
 }
 
 .clickable-row:hover {
-  background-color: rgba(83, 255, 80, 0.19);
+  background-color: rgba(248, 219, 102, 0.82);
+  cursor: pointer;
 }
 
 th {
-  background-color: rgba(83, 255, 80, 0.19);
+  background-color: rgba(133, 19, 186, 0.8);
+  color: whitesmoke;
+  font-size: larger;
 }
 
 #chartContainer {
-  width: 100%;
-  height: 800px;
+  width: 70%;
+  height: 500px;
+  margin: auto;
 }
 
+label {
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+
+select {
+  background-color: #d3bae4; /* Fallback color if gradients are not supported */
+  background-position: center right;
+  background-repeat: no-repeat;
+  border: 1px solid #AAA;
+  border-radius: 2px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  color: #555;
+  font-size: x-large;
+  margin-right: 100px;
+  margin-left: 10px;
+  overflow: hidden;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#playButton {
+  margin: 20px;
+  width: 30%;
+  border-style: wave;
+}

@@ -15,23 +15,19 @@ block content
     h4#stockSymbol #{symbol}
 
     form(id="stockOptions" action="/" method="get")
-        label(for='timeSeries') Select the type of interval of Time Series:
+        label(for='timeSeries') Time Series
         select#timeSeries(name='timeSeries')
             option(value='TIME_SERIES_DAILY') Daily Stock Prices
             option(value='TIME_SERIES_WEEKLY') Weekly Stock Price
             option(value='TIME_SERIES_MONTHLY') Monthly Stock Price
-        br
-        br
-        label(for='priceType')
+
+        label(for='priceType') Price Type
         select#priceType(name='priceType')
             option(value='1. open') Open Price
             option(value='2. high') High Price
             option(value='3. low') Low Price
             option(value='4. close') Close Price
-        br
-        br
         button(type="submit") Go!
-
-    br
+block moreContent
     br
     div#chartContainer

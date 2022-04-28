@@ -4,10 +4,10 @@ block links
     script(src="/javascripts/search.js")
 block content
     h3 Search a Stock Symbol
-    form(id="searchForm")
-        .form-row
-            input#searchKeywords(type='text' list="searchResults" name='searchKeywords' placeholder="Search..." autocomplete='false')
-            button.block(type='submit' id="searchButton") Search
+    form#searchForm
+        input#searchKeywords(type='text' placeholder='Search..' name='searchKeywords' autocomplete='false')
+        button#searchButton(type='submit') Search
+            i.fa.fa-search
     br
     br
     div#messageArea
