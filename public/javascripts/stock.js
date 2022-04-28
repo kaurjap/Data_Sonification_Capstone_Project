@@ -13,7 +13,6 @@ $(document).ready ( function () {
     let synth = new Tone.Synth().toDestination();
 
 
-
     /**
      * Plot a chart and create a play button when the stock options are
      * selected and submitted.
@@ -102,12 +101,6 @@ $(document).ready ( function () {
                     max: Math.max.apply (null, stockPrices)
                 }
 
-                // DEBUG
-                console.log ("Stock prices: ");
-                console.log (stockPrices);
-                console.log ("Minimum Price: " + pricesRange.min);
-                console.log ("Maximum Price: " + pricesRange.max);
-
                 let reversedPrices = stockPrices.reverse ();
 
                 reversedPrices.forEach ( (price) => {
@@ -149,6 +142,7 @@ let sleep = (milliseconds) => {
         currentDate = Date.now();
     } while (currentDate - date < milliseconds);
 }
+
 
 /**
  * Method that gets called to create a play button

@@ -85,16 +85,28 @@ $(document).ready ( () => {
                 table.innerHTML = "";
             }
 
-        });
-    });
+        })
+            .then ( () => {
+                let clickableRows = document.querySelectorAll(".clickable-row");
 
+                /**
+                 * Method that sends the user to the stock symbol's page upon
+                 * clicking that stock result
+                 */
+                clickableRows.forEach ( (row) => {
+                    row.addEventListener ("click", function (e) {
+                        let data = row.getElementsByTagName ("td");
+                        const symbol = data [0].innerText;
+                        // console.log (symbol);
 
-    /**
-     * Method that sends the user to the stock symbol's page upon
-     * clicking that stock result
-     */
-    $(".clickable_row").on ('click', function (e) {
-        alert ("Row clicked!");
+                        // window.location.href = "http://localhost:3000/stock/" + symbol;
+
+                        // using relative path
+                        window.location.href = "/stock/" + symbol;
+
+                    })
+                });
+            });
     });
 
 });
