@@ -9,15 +9,10 @@ router.get('/', function(req, res, next) {
 
 
 router.post ('/',  async (req, res) => {
-  // DEBUG point
-  // console.log(req.body.searchKeywords);
 
   let keywords = req.body.searchKeywords;
 
   const data = await searchStockSymbol(keywords);
-  // DEBUG
-  // console.log("Data for the browser -------- ");
-  // console.log(data);
 
   res.send (data);
 });

@@ -55,8 +55,8 @@ $(document).ready ( function () {
                 chart.scroller().line(dataTable);
 
                 // to color mark the rising and falling strokes
-                lineSeries.risingStroke('rgba(19,186,66,0.66)', 3, null, 'round', 'round');
-                lineSeries.fallingStroke('rgba(186,19,30,0.66)', 3, null, 'round', 'round');
+                lineSeries.risingStroke ('rgba(19,186,66,0.66)', 3, null, 'round', 'round');
+                lineSeries.fallingStroke ('rgba(186,19,30,0.66)', 3, null, 'round', 'round');
 
                 chart.title("Symbol = " + symbol);
                 chart.container("chartContainer");
@@ -65,12 +65,14 @@ $(document).ready ( function () {
             .then(() => {
                 counter ++;
                 if (counter === 1) {
-                    createButton();
+                    createButton('playButton', "Play!");
+                    createButton ('pauseButton', "Pause/Stop");
                 }
             })
             .then ( async () => {
 
             let playButton = document.getElementById ("playButton");
+            let pauseButton = document.getElementById ("pauseButton");
 
             // wait for the audio to set up
             await Tone.start ();
@@ -111,15 +113,24 @@ $(document).ready ( function () {
                 console.log ("Mapped Prices: ");
                 console.log (mappedPrices);
 
+                let keepgoing = true;
 
                 // using Tone's audio synthesizer to produce the sound
                 let i = 0;
                 mappedPrices.forEach ( (frequency) => {
-                    const now = Tone.now ();
-                    synth.triggerAttackRelease (frequency, "2n", now);
-                    console.log ("i = " + i);
-                    i++;
-                    sleep (250);
+
+                    pauseButton.addEventListener ("click", function () {
+                        keepgoing = false;
+                    });
+
+                    if (keepgoing !== true) return;
+                    else {
+                        const now = Tone.now();
+                        synth.triggerAttackRelease(frequency, "2n", now);
+                        console.log("i = " + i);
+                        i++;
+                        sleep(250);
+                    }
                 })
 
             });
@@ -148,12 +159,12 @@ let sleep = (milliseconds) => {
  * Method that gets called to create a play button
  * after the chart for the desired data is displayed.
  */
-let createButton = () => {
+let createButton = (id, text) => {
     let buttonArea = document.getElementById ("mainArea");
 
     let playButton = document.createElement("button");
-    playButton.innerText = "Play!";
-    playButton.setAttribute('id', 'playButton');
+    playButton.innerText = text;
+    playButton.setAttribute('id', id);
     buttonArea.appendChild (playButton);
 }
 

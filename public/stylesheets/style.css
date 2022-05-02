@@ -158,3 +158,9 @@ select {
   width: 30%;
   border-style: wave;
 }
+
+#pauseButton {
+  margin: 20px;
+  width: 30%;
+  border-style: wave;
+}
